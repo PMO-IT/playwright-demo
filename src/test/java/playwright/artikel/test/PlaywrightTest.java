@@ -54,4 +54,19 @@ public class PlaywrightTest {
 		assertTrue(roomsPage.isOnRoomsPage());
 	}
 
+	@Test
+	public void hardTestBookRoom() {
+		this.page = browser.newPage();
+		RoomsPage roomsPage = new RoomsPage(page);
+		roomsPage.navigate();
+		roomsPage.clickLetMeHack();
+		// page.pause();
+		boolean isSectionVisible = roomsPage.clickBookSingleRoom();
+		assertTrue(isSectionVisible);
+		// Book from Day x to Day z
+		isSectionVisible = roomsPage.reserveRoomInSameMonth(1, 8, "Hans", "Test", "hansTets@email.com",
+				"1234567899999");
+		assertTrue(isSectionVisible);
+
+	}
 }

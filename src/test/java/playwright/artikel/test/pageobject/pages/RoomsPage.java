@@ -29,4 +29,11 @@ public class RoomsPage {
 	public boolean clickBookSingleRoom() {
 		return this.singleRoomSection.clickBookRoom();
 	}
+
+	public boolean reserveRoomInSameMonth(int from, int to, String firstname, String lastname, String email,
+			String phone) {
+
+		return this.singleRoomSection.reserveRoomInSameMonth(from, to, firstname, lastname, email, phone);
+
+	}
 }
