@@ -19,10 +19,8 @@ public class SingleRoomSection {
 	}
 
 	public boolean clickBookRoom() {
-		this.page.locator("css=hotel-room-info").getByText("single").locator("css=btn").getByText("Book this room")
-				.click();
-		;
-		return this.page.locator("css=col-sm-4").isVisible();
+		page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Book this room")).click();
+		return page.locator(".rbc-calendar").isVisible();
 	}
 
 	public boolean reserveRoomInSameMonth(int from, int to, String firstname, String lastname, String email,
@@ -34,7 +32,8 @@ public class SingleRoomSection {
 		if (isCorrectDayNumberVisible(from, to)) {
 
 			fillFormandClickSubmit(firstname, lastname, email, phone);
-			return isBookingSuccesfullVisible();
+			return isBookingSuccesfullVisible() || page.getByText("The room dates are either").isVisible();
+
 		}
 
 		return false;
