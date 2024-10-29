@@ -10,6 +10,7 @@ import com.microsoft.playwright.BrowserType;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
+import com.microsoft.playwright.assertions.PlaywrightAssertions;
 import com.microsoft.playwright.options.AriaRole;
 
 import playwright.artikel.test.pageobject.pages.RoomsPage;
@@ -39,7 +40,10 @@ public class PlaywrightTest {
 		// page.getByText("Google Suche").isVisible();
 		page.getByRole(AriaRole.BUTTON).getByText("Alle akzeptieren").click();
 		assertTrue(page.getByRole(AriaRole.BUTTON).getByText("Google Suche").isVisible());
-		assertTrue(page.locator("//input[text()='Google Suche']").isVisible());
+		page.pause();
+		PlaywrightAssertions
+				.assertThat(page.locator("xpath=//div[@class='FPdoLc lJ9FBc']//center/input[text()='Google Suche']"))
+				.isVisible();
 		Locator.FilterOptions filter = new Locator.FilterOptions().setHasText("Google Suche");
 		assertTrue(page.getByRole(AriaRole.BUTTON).filter(filter).isVisible());
 
