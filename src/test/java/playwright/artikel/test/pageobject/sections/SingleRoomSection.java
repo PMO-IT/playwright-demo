@@ -19,7 +19,7 @@ public class SingleRoomSection {
 	}
 
 	public boolean clickBookRoom() {
-		page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Book this room")).click();
+		page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Book this room")).first().click();
 		return page.locator(".rbc-calendar").isVisible();
 	}
 
